@@ -1,62 +1,77 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int n = 0;
-int pinNum[6] = {0};
-int pinRe[6] = {0};
-int checkNum[6] = {0};
+int userResponse = 0;
 
-int main(){
+int main()
+{
+	int pinA[6] = { 0 };//stores input of pin 1 from user
+	int pinB[6] = { 0 };//stores input of pin 2 from user
+	int i = 0; //stores to arrays to check for matching. 
+	do {
+		printf("\n\t-*-*-*-PIN Verification Program-*-*-*-\n");
+		printf("\t1\tEnter PIN twice\n");
+		printf("\t2\tPINS Match\n");
+		printf("\t3\tCheck to see if PIN does not start with a 0\n");
+		printf("\t4\tExit\n");
 
-    while (n != 4){
+		scanf_s("%d", &userResponse);
 
-        printf("Welcome to your PIN program! Choose from the options below.\n");
-        printf(" 1 for entering a PIN twice\n");
-        printf(" 2 for checking if PINs are equal\n");
-        printf(" 3 for checking if PIN violates rule\n");
-        printf(" 4 for exiting the program\n");
+		switch (userResponse) {
+		case 1:
 
-        scanf("%d", &n);
+			printf("\nPlease enter a SIX digit PIN number separated by spaces. Please do not start with 0!\n");
 
-        switch (n) {
-            case 1:
-                printf("\nPlease Enter your PIN number separated by spaces. Do NOT use the number 0 to begin your PIN number!\n");
-                scanf("%d%d%d%d%d%d", &pinNum[0], &pinNum[1], &pinNum[2], &pinNum[3], &pinNum[4], &pinNum[5]);
-                printf("\nPlease Re-enter PIN number separated by spaces to verify it is the same number.\n");
-                scanf("%d%d%d%d%d%d", &pinRe[0], &pinRe[1], &pinRe[2], &pinRe[3], &pinRe[4], &pinRe[5]);
-                break;
+			scanf_s("%d %d %d %d %d %d", &pinA[0], &pinA[1], &pinA[2], &pinA[3], &pinA[4], &pinA[5]);
 
-            case 2:
-                printf("\nPlease Re-enter PIN number separated by spaces to verify the numbers are equal.\n");
-                scanf("%d%d%d%d%d%d", &checkNum[0], &checkNum[1], &checkNum[2], &checkNum[3], &checkNum[4], &checkNum[5]);
+			printf("\nPlease Re-Enter your SIX digit PIN with spaces: \n");
 
-                    if (pinNum != checkNum){
-                        printf("\nPIN numbers did NOT match\n");}
+			scanf_s("%d %d %d %d %d %d", &pinB[0], &pinB[1], &pinB[2], &pinB[3], &pinB[4], &pinB[5]);
 
-                    else printf("\nPIN numbers are a match.\n");\
-                break;
+			break;
 
-            case 3:
+		case 2:		
+			pinA[i] = pinA[0],pinA[1], pinA[2], pinA[3], pinA[4], pinA[5];
+			pinB[i] = pinB[0], pinB[1], pinB[2], pinB[3], pinB[4], pinB[5];
 
-                if (pinNum[0] == 0){
-                    printf("\nYour PIN number violates the rule!\n");
-                    }
+			if (pinA[i] == pinB[i]) {
+				printf("The pins match!");
+			}
+			else 
+				printf("Pins DO NOT MATCH. Select option 1 again.");
+			break;
 
-                    else printf("\nYour PIN number is valid.\n");
+		case 3:
+			if (pinA[0] == 0 && pinB[0] == 0) {
+				printf("You violated the zero rule! The PIN was not supposed to start with 0. RETRY! \n");
+			}
+			else
+				printf("Congratulations, you did not break the 0 rule.\n");
+				break;
+
+		case 4:
+
+			printf("Exiting, Thank you!");
+
+			break;
+
+		default:
+
+			printf("Please enter a valid option displayed in the menu.");
 
 
-                break;
+			break;
 
-            case 4:
-                printf("\nYou are now exiting the PIN program\n");
+		}
 
-                break;
 
-            default:
-                printf("\nPlease enter options 1 through 4 only! \n");
-                break;
 
-        }
-        continue;
-        return 0;
-    }
-    }
+	} while (userResponse != 4);
+
+
+
+
+
+		return 0;
+}
+
